@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="launcher_background">#FFFFFF</color>
+   <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#D8D8D8</color>
+    <color name="colorAccent">#0A8944</color>
+    <color name="colorAccentRippleColor">#2C098943</color>
+    <color name="colorHint">#494949</color>
+    <color name="tertiary_500">#59B083</color>
+    <color name="tertiary_900">#2E5C44</color>
+</resources>

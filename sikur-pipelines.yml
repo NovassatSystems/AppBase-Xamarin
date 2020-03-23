@@ -1,0 +1,44 @@
+# Sikur Messenger - Build Pipeline
+# https://docs.microsoft.com/azure/devops/pipelines/languages/xamarin
+
+name: $(date:MMdd).$(Build.BuildId)
+trigger:
+  batch: true
+  branches:
+    include:
+    - homolog
+    
+stages:
+- stage: iOS
+  displayName: iOS
+  jobs: 
+  - template: pipe/jobs/build_ios.yml
+    parameters: 
+      name: 'Sikur'
+      display: 'Sikur'
+      configuration: 'Release'
+      versionName: '1.$(Build.BuildId)'
+      #Prod
+      #provisioningFileId: '19151a2f-78d5-4ebb-9822-2f35a18d235a'
+      #AdHoc
+      provisioningFileId: '09462f2e-7841-4e83-bc05-2ca8e5a1f070'
+      certSecureFile: '841408bf-f37e-46b9-bf0b-5856bab425df'
+      whitelabelFolder: 'Sikur'
+      serviceEndpoint: 'Sikur iOS'
+      appIdentifier: 'com.sikur.message.client'
+      appLabel: 'Sikur'
+      
+- stage: Android 
+  displayName: Android
+  jobs: 
+  - template: pipe/jobs/build_android.yml
+    parameters: 
+      name: 'Sikur'
+      display: 'Sikur'
+      configuration: 'Release' 
+      versionName: '1.$(Build.BuildId)'
+      serviceConnection: 'Sikur Android'
+      packageName: 'com.sikur.messenger.client'
+      appLabel: 'Sikur'
+      whitelabelFolder: 'Sikur'
+      

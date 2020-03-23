@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<linker>
+    <assembly fullname="Autofac" />
+    <assembly fullname="Core">
+        <type fullname="Core.*Page">
+            <method name=".ctor" />
+        </type>
+        <type fullname="Core.*ViewModel" preserve="all" />
+        <type fullname="Core.*Result" preserve="all" />
+        <type fullname="Core.*Wrapper" preserve="all" />
+        <type fullname="Core.*Response" preserve="all" />
+        <type fullname="Core.*Request" preserve="all" />
+        <type fullname="Core.*Model" preserve="all" />
+        <type fullname="Core.*Service">
+            <method name=".ctor" />
+        </type>
+        <type fullname="Core.SvgImage" preserve="all" />
+    </assembly>
+    <assembly fullname="Security.Library" />
+</linker>

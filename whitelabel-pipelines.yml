@@ -1,0 +1,55 @@
+# Sikur Messenger - Build Pipeline
+# https://docs.microsoft.com/azure/devops/pipelines/languages/xamarin
+
+name: $(date:MMdd).$(Build.BuildId)
+trigger:
+  batch: true
+  branches:
+    include:
+    - Homolog
+
+stages:
+- stage: iOS
+  displayName: iOS 
+  jobs:
+  - template: pipe/jobs/build_ios.yml
+    parameters:
+      name: 'Sikur'
+      display: 'Sikur'
+      configuration: 'Release'
+      versionName: '1.$(Build.BuildId)'
+      provisioningFileId: '19151a2f-78d5-4ebb-9822-2f35a18d235a'
+      certSecureFile: '841408bf-f37e-46b9-bf0b-5856bab425df'
+      project: 'iOS.Sikur'
+  - template: pipe/jobs/build_ios.yml
+    parameters:
+      name: 'Vita'
+      display: 'Vita'
+      configuration: 'Release'
+      versionName: '1.$(Build.BuildId)'
+      provisioningFileId: '3e348bfb-f27f-4d2a-a98d-007a6ae604b5'
+      certSecureFile: 'f297a0c3-9b27-4f28-94c4-53ac51bf95cf'
+      project: 'iOS.Vita'
+- stage: Android
+  displayName: Android
+  jobs:
+  - template: pipe/jobs/build_android.yml
+    parameters:
+      name: 'Sikur'
+      display: 'Sikur'
+      configuration: 'Release'
+      project: 'Droid.Sikur'
+      versionName: '1.$(Build.BuildId)'
+      packageName: 'com.sikur.messenger.client'
+      appLabel: 'Sikur'
+      whitelabelFolder: 'Sikur'
+  - template: pipe/jobs/build_android.yml
+    parameters:
+      name: 'Vita'
+      display: 'Vita'
+      configuration: 'Release'
+      project: 'Droid.Vita'
+      versionName: '1.$(Build.BuildId)'
+      packageName: 'com.vita.messenger.client'
+      appLabel: 'Vita'
+      whitelabelFolder: 'Vita'

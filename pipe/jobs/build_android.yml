@@ -1,0 +1,80 @@
+parameters:
+  name: ''
+  display: ''
+  configuration: ''
+  versionName: '' 
+  packageName: ''
+  appLabel: ''
+  whitelabelFolder: ''
+
+jobs:
+- job: ${{ parameters.name }}
+  displayName: ${{ parameters.Display }}
+  pool:
+    vmImage: 'macOS-latest'
+
+  steps:
+  - checkout: self
+    submodules: true
+
+  - task: NuGetToolInstaller@0
+
+  - task: NuGetCommand@2
+    inputs:
+      restoreSolution: 'Sikur.Mobile.sln'
+
+  - task: CopyFiles@2
+    displayName: 'Whitelabel files'
+    inputs:
+      SourceFolder: 'Whitelabel/${{ parameters.whitelabelFolder }}/Android'
+      Contents: '**'
+      overWrite: true
+      TargetFolder: 'Droid'
+
+  - task: vs-publisher-473885.motz-mobile-buildtasks.android-manifest-version.android-manifest-version@1
+    displayName: 'Set Android App Version/Build'
+    inputs:
+      sourcePath: 'Droid/Properties/AndroidManifest.xml'
+      versionCode: $(Build.BuildId)
+      versionName: ${{ parameters.versionName }}
+
+  - task: vs-publisher-473885.motz-mobile-buildtasks.android-manifest-package-name.android-manifest-package-name@1
+    displayName: 'Set Android App Version/Build'
+    inputs:
+      sourcePath: 'Droid/Properties/AndroidManifest.xml'
+      packageName: ${{ parameters.packageName }}
+      appLabel: ${{ parameters.appLabel }}
+
+  - task: XamarinAndroid@1
+    inputs:
+      projectFile: 'Droid/Droid.csproj'
+      outputDirectory: '$(build.binariesdirectory)/${{ parameters.configuration }}'
+      configuration: ${{ parameters.configuration }}
+      msbuildArchitectureOption: x64
+
+  - task: AndroidSigning@3
+    displayName: 'Signing and aligning APK'
+    inputs:
+      jarsign: true
+      apksign: true
+      apkFiles: '$(build.binariesdirectory)/${{ parameters.configuration }}/**/*.apk'
+      apksignerKeystoreFile: 'sikur.keystore'
+      apksignerKeystorePassword: '$(android.sign.pwd)'
+      apksignerKeystoreAlias: '$(android.sign.alias)'
+      apksignerKeyPassword: '$(android.sign.pwd)'
+      zipalign: true
+      
+  - task: CopyFiles@2
+    displayName: 'Copy files to Staging'
+    inputs:
+      SourceFolder: '$(build.binariesdirectory)'
+      Contents: '**/*.apk'
+      TargetFolder: '$(build.artifactstagingdirectory)/Android'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifacts'
+    inputs:
+      PathtoPublish: '$(build.artifactstagingdirectory)'
+      condition: succeededOrFailed()
+
+  

@@ -1,0 +1,86 @@
+parameters:
+  name: ''
+  display: ''
+  configuration: ''
+  versionName: ''
+  provisioningFileId: ''
+  certSecureFile: ''
+  appIdentifier: ''
+  appLabel: ''
+  whitelabelFolder: ''
+
+jobs:
+- job: ${{ parameters.name }}
+  displayName: ${{ parameters.display }}
+  pool:
+    vmImage: 'macOS-latest'
+
+  steps:
+  - checkout: self
+    submodules: true
+
+  - task: InstallAppleCertificate@2
+    inputs:
+      certSecureFile: '${{ parameters.certSecureFile }}'
+      certPwd: '$(ios.distcert.pwd)'
+
+  - task: InstallAppleProvisioningProfile@1
+    inputs:
+      provProfileSecureFile: ${{ parameters.provisioningFileId }}
+
+  - task: NuGetToolInstaller@0
+
+  - task: NuGetCommand@2
+    inputs:
+      restoreSolution: 'Sikur.Mobile.sln'
+
+  - task: CopyFiles@2
+    displayName: 'Whitelabel files'
+    inputs:
+      SourceFolder: 'Whitelabel/${{ parameters.whitelabelFolder }}/iOS'
+      Contents: '**'
+      overWrite: true
+      TargetFolder: 'iOS'
+
+  - task: vs-publisher-473885.motz-mobile-buildtasks.ios-bundle-version.ios-bundle-version@1
+    displayName: 'Set iOS App Version/Build'
+    inputs:
+      sourcePath: iOS/Info.plist
+      versionName: ${{ parameters.versionName }}
+  
+  - task: vs-publisher-473885.motz-mobile-buildtasks.ios-bundle-identifier.ios-bundle-identifier@1
+    displayName: 'Set iOS App Name/Idenifier'
+    inputs:
+      sourcePath: iOS/Info.plist
+      bundleIdentifier: ${{ parameters.appIdentifier }}
+      bundleName: ${{ parameters.appLabel }}
+      bundleDisplayName: ${{ parameters.appLabel }}
+
+  - script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 5_16_0
+    displayName: 'Select Xamarin SDK version'
+
+  - script: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_10.1.app;sudo xcode-select --switch /Applications/Xcode_10.1.app/Contents/Developer
+    displayName: 'Select Xcode SDK version'
+
+  - task: XamariniOS@2
+    displayName: 'Build iOS App'
+    inputs:
+      solutionFile: 'iOS/iOS.csproj'
+      configuration: '${{ parameters.configuration }}'
+      buildForSimulator: false
+      packageApp: true
+      signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
+      signingProvisioningProfileID: '$(APPLE_PROV_PROFILE_UUID)'
+
+  - task: CopyFiles@2
+    displayName: 'Copy files to Staging'
+    inputs:
+      SourceFolder: '$(system.defaultworkingdirectory)'
+      Contents: '**/*.ipa'
+      TargetFolder: '$(build.artifactstagingdirectory)'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifacts'
+    inputs:
+      PathtoPublish: '$(build.artifactstagingdirectory)'
+    condition: succeededOrFailed()

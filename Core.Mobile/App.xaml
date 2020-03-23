@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="Core.App">
+    <Application.Resources>
+
+        <!--#region Colors-->
+        <Color x:Key="colorPrimary">#757575</Color>
+        <Color x:Key="colorPrimaryDark">#1B1D26</Color>
+        <Color x:Key="colorAccent">#0A8944</Color>
+        <Color x:Key="colorHint">#D8D8D8</Color>
+        <Color x:Key="colorTextDefault">#313131</Color>
+        <Color x:Key="colorLightBlue">#007aff</Color>
+        <Color x:Key="colorRed">#bb060c</Color>
+        <Color x:Key="colorGreen">#00b22e</Color>
+        <Color x:Key="colorBackgroundPage">#fafafa</Color>
+        <Color x:Key="colorBrightBlue">#007aff</Color>
+        <Color x:Key="colorWarmGrey">#858585</Color>
+        <Color x:Key="lightGrayColor">#959595</Color>
+
+        <!--#endregion-->
+
+        <Style TargetType="Label" x:Key="lblTitle">
+            <Setter Property="TextColor" Value="{StaticResource colorTextDefault}"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="lblDefault">
+            <Setter Property="TextColor" Value="{StaticResource colorTextDefault}"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="lblHyperlink">
+            <Setter Property="TextColor" Value="{StaticResource colorLightBlue}"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="lblError">
+            <Setter Property="TextColor" Value="{StaticResource colorRed}"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+        </Style>
+
+        <ControlTemplate x:Key="LoadingScrollTemplate">
+            <RelativeLayout>
+                <ScrollView RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" 
+                            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
+                    <ContentPresenter />
+                </ScrollView>
+                <Grid Opacity="0.7" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" 
+                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}" 
+                      IsVisible="{TemplateBinding BindingContext.IsBusy}">
+                    <BoxView BackgroundColor="{StaticResource lightGrayColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Opacity="0.5" />
+                    <ActivityIndicator IsRunning="True" IsVisible="True" Color="{StaticResource colorPrimaryDark}" VerticalOptions="Center" HorizontalOptions="Center" />
+                </Grid>
+            </RelativeLayout>
+
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="LoadingTemplate">
+            <RelativeLayout>
+                <ContentPresenter RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" 
+                            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
+                <Grid Opacity="0.7" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" 
+                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}" 
+                      IsVisible="{TemplateBinding BindingContext.IsBusy}">
+                    <BoxView BackgroundColor="{StaticResource lightGrayColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Opacity="0.5" />
+                    <ActivityIndicator IsRunning="True" IsVisible="True" Color="{StaticResource colorPrimaryDark}" VerticalOptions="Center" HorizontalOptions="Center" />
+                </Grid>
+            </RelativeLayout>
+        </ControlTemplate>
+
+
+    </Application.Resources>
+</Application>

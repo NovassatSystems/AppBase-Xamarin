@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+        <xsd:element name="root" msdata:IsDataSet="true">
+            <xsd:complexType>
+                <xsd:choice maxOccurs="unbounded">
+                    <xsd:element name="metadata">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                            </xsd:sequence>
+                            <xsd:attribute name="name" use="required" type="xsd:string" />
+                            <xsd:attribute name="type" type="xsd:string" />
+                            <xsd:attribute name="mimetype" type="xsd:string" />
+                            <xsd:attribute ref="xml:space" />
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="assembly">
+                        <xsd:complexType>
+                            <xsd:attribute name="alias" type="xsd:string" />
+                            <xsd:attribute name="name" type="xsd:string" />
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="data">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+                            <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+                            <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+                            <xsd:attribute ref="xml:space" />
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="resheader">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" use="required" />
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:choice>
+            </xsd:complexType>
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="CreateAccessPin" xml:space="preserve">
+     <value>Registre un PIN para utilizar el servicio</value>
+  </data>
+    <data name="PinCreatedSuccess" xml:space="preserve">
+     <value>PIN guardado con éxito!</value>
+  </data>
+    <data name="ForgotPin" xml:space="preserve">
+     <value>Olvidaste tu pin?</value>
+  </data>
+    <data name="ConfirmPin" xml:space="preserve">
+     <value>Informe nuevamente el mismo PIN</value>
+  </data>
+    <data name="EnterPin" xml:space="preserve">
+     <value>Escriba el PIN</value>
+  </data>
+    <data name="DiferentPin" xml:space="preserve">
+     <value>El pin no coincide</value>
+  </data>
+    <data name="InvalidPin" xml:space="preserve">
+     <value>PIN inválido</value>
+  </data>
+    <data name="OnboardingWelcome" xml:space="preserve">
+     <value>¡Hola es bienvenido!</value>
+  </data>
+    <data name="OnboardingDescription" xml:space="preserve">
+     <value>Con Sikur puede comunicarse de forma rápida y segura, encriptada de punto a punto.</value>
+  </data>
+    <data name="OnboardingCall" xml:space="preserve">
+     <value>Hacer llamadas de voz y video</value>
+  </data>
+    <data name="OnboardingEmail" xml:space="preserve">
+     <value>Enviar mensajes fácilmente como un correo electrónico</value>
+  </data>
+    <data name="OnboardingChat" xml:space="preserve">
+     <value>Chatea rápidamente, individualmente o en grupos</value>
+  </data>
+    <data name="OnboardingFile" xml:space="preserve">
+     <value>Almacene y organice sus archivos</value>
+  </data>
+    <data name="Email" xml:space="preserve">
+     <value>Email</value>
+  </data>
+    <data name="Telephone" xml:space="preserve">
+     <value>Teléfono</value>
+  </data>
+    <data name="Password" xml:space="preserve">
+     <value>Contraseña</value>
+  </data>
+    <data name="Start" xml:space="preserve">
+     <value>Inicio</value>
+  </data>
+    <data name="NeedHelp" xml:space="preserve">
+     <value>Necesita ayuda?</value>
+  </data>
+    <data name="EmailInvalid" xml:space="preserve">
+     <value>Email inválido</value>
+  </data>
+    <data name="EmailPasswordEmpty" xml:space="preserve">
+     <value>El correo electrónico o la contraseña no pueden estar vacíos</value>
+  </data>
+    <data name="ManageContacts" xml:space="preserve">
+     <value>Administrar contactos</value>
+  </data>
+    <data name="Invites" xml:space="preserve">
+     <value>Invitaciónes</value>
+  </data>
+    <data name="MyAccount" xml:space="preserve">
+     <value>Mi cuenta</value>
+  </data>
+    <data name="Config" xml:space="preserve">
+     <value>Configuraciones</value>
+  </data>
+    <data name="Help" xml:space="preserve">
+     <value>Ayuda</value>
+  </data>
+    <data name="Exit" xml:space="preserve">
+     <value>Salir</value>
+        </data>
+    <data name="Yes" xml:space="preserve">
+     <value>Sí</value>
+  </data>
+    <data name="No" xml:space="preserve">
+     <value>No</value>
+  </data>
+    <data name="RegisterFingerprint" xml:space="preserve">
+     <value>Registrar autenticación de huellas digitales?</value>
+  </data>
+    <data name="TouchSensor" xml:space="preserve">
+     <value>Toca el sensor</value>
+  </data>
+    <data name="NeedsEmailConfirmation" xml:space="preserve">
+     <value>Para iniciar una sesión con este correo electrónico debe confirmar a través del enlace enviado al correo electrónico dado.\n\nSi no ha recibido, compruebe que su cliente de correo electrónico no se movió a su casilla de SPAM</value>
+  </data>
+    <data name="LicenceExpired" xml:space="preserve">
+     <value>Licencia expirad</value>
+  </data>
+    <data name="UserBlocked" xml:space="preserve">
+     <value>Usuario bloqueado</value>
+  </data>
+    <data name="NeedsConfirmUserChange" xml:space="preserve">
+     <value>Se requiere confirmación de cambio de usuario</value>
+  </data>
+    <data name="NoInternt" xml:space="preserve">
+     <value>Problemas de conexão com a internet</value>
+  </data>
+    <data name="ErrorDeviceRegister" xml:space="preserve">
+     <value>Problemas ao registrar o device no servidor</value>
+  </data>
+    <data name="PleaseContactUs" xml:space="preserve">
+     <value>Si tiene preguntas o problemas, comuníquese con el centro de atención telefónica a través de la siguiente información de contacto:</value>
+  </data>
+    <data name="UsedOf" xml:space="preserve">
+     <value>usado de</value>
+  </data>
+    <data name="LogoutQuestion" xml:space="preserve">
+     <value>¿Quieres desconectar y salir de la aplicación?</value>
+  </data>
+    <data name="LogoutQuestionChatHistory" xml:space="preserve">
+     <value>Si se desconecta la totalidad de su historial de chat, en este dispositivo, se perderán. ¿Desea continuar?</value>
+  </data>
+</root>
